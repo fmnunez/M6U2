@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <meta charset="UTF-8">
+ <title>Modificar Novedad</title>
+ <style>
+ body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 40px; }
+ .card { background: white; padding: 25px; border-radius: 8px; max-width: 500px; margin: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+ .form-group { margin-bottom: 15px; }
+ label { display: block; margin-bottom: 5px; font-weight: bold; }
+ input[type="text"], textarea { width: 100%; padding: 8px; box-sizing: border-box; }
+ button { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+ .error { color: red; margin-top: 15px; font-weight: bold; }
+ .volver { display: inline-block; margin-top: 15px; color: #6c757d; text-decoration: none; }
+ </style>
+</head>
+<body>
+ <div class="card">
+ <h2>Modificar Novedad #{{novedad.id}}</h2>
+ <form action="/admin/novedades/modificar" method="post">
+ <!-- Campo oculto para enviar el ID -->
+ <input type="hidden" value="{{novedad.id}}" name="id">
+ <div class="form-group">
+ <label for="titulo">Título:</label>
+ <input type="text" id="titulo" name="titulo" value="{{novedad.titulo}}" required>
+ </div>
+ <div class="form-group">
+ <label for="subtitulo">Subtítulo:</label>
+ <input type="text" id="subtitulo" name="subtitulo" value="{{novedad.subtitulo}}" required>
+ </div>
+ <div class="form-group">
+ <label for="cuerpo">Cuerpo / Contenido:</label>
+ <textarea id="cuerpo" name="cuerpo" rows="5" required>{{novedad.cuerpo}}</textarea>
+ </div>
+ <button type="submit">Guardar Cambios</button>
+ </form>
+ {{#if error}}
+ <p class="error">{{message}}</p>
+ {{/if}}
+ <a href="/admin/novedades" class="volver">← Volver al listado</a>
+ </div>
+</body>
+</html>
